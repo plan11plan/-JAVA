@@ -1,0 +1,58 @@
+package tryCatch;
+
+class eThrow1{
+    public int eThrow1(String a,String b) {
+            int x; int y;
+            x = Integer.parseInt(a);
+            y = Integer.parseInt(b);
+        return x+y;
+        /*
+    - eThrow1 클래스는 ethrow1 메소드를 가지며, 키보드를 통해 문자열로 받은 두 숫자를 정수로 변환하여 더하는 기능을 가짐
+    - 단, 정상적인 숫자가 아닌 경우 NumberFormatException을 throw 함
+     */
+    }
+}
+class eThrow2{
+    public int eThrow2(String a,String b) {
+        int x; int y;
+        x =Integer.parseInt(a);
+        y =Integer.parseInt(b);
+        return x/y;
+    }
+    /*
+      eThrow2 클래스는 ethrow2 메소드를 가지며, 키보드를 통해 문자열로 받은 두 숫자를 정수로 변환하여 나누는 기능을 가짐
+- 단 0으로 나누기를 하면 ArithmeticException을 throw 함(이 메소드는 NumberFormatException을 발생시킬 수도 있음, 즉 2개의 예외 발생_
+     */
+}
+public class MainTest {
+    public static void main(String[] args) {
+        eThrow1 test1 =new eThrow1();
+        eThrow2 test2 =new eThrow2();
+        System.out.println("eThrow1 테스트 시작");
+
+        try{
+            System.out.println(test1.eThrow1("1","2"));
+            System.out.println(test1.eThrow1("1","2.2"));
+
+        }catch (NumberFormatException e){
+            System.out.println("NumberFormatException 에외 발생");
+        }
+
+        System.out.println("eThrow2 테스트 시작");
+        try{
+            System.out.println(test2.eThrow2("2","1"));
+            System.out.println(test2.eThrow2("1","1.2"));
+
+        }catch (ArithmeticException e){
+            System.out.println("ArithmeticException 예외 발생");
+        }catch( NumberFormatException e){
+            System.out.println("NumberFormatException 예외 발생");
+        }
+        /*
+ Main 메소드 내에서 두 클래스의 메소드를 호출하고, 각각의 예외를 처리할 수 있도록 구현할 것
+- 각 입력은 메인에서 처리할 수도 있고 각 클래스에서 처리할 수 있음
+- try, catch 문은 Main 문에서 처리할 것
+ */
+    }
+
+}
